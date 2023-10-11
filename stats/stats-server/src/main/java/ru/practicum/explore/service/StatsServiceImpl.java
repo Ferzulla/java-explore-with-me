@@ -20,7 +20,7 @@ public class StatsServiceImpl implements StatsService {
 
     private final StatsRepository statsRepository;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    private final String GetStatStr = "Дата начала {} должна быть ранее даты окончания {}.";
+    public final String GetStatStr = "Дата начала {} должна быть ранее даты окончания {}.";
 
     @Autowired
     public StatsServiceImpl(StatsRepository statsRepository) {
