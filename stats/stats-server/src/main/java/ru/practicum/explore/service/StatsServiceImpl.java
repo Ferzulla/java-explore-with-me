@@ -20,7 +20,6 @@ public class StatsServiceImpl implements StatsService {
 
     private final StatsRepository statsRepository;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    public final String GetStatStr = "Дата начала {} должна быть ранее даты окончания {}.";
 
     @Autowired
     public StatsServiceImpl(StatsRepository statsRepository) {
@@ -40,8 +39,8 @@ public class StatsServiceImpl implements StatsService {
         LocalDateTime startTime = LocalDateTime.parse(start, dateTimeFormatter);
         LocalDateTime endTime = LocalDateTime.parse(end, dateTimeFormatter);
         if (startTime.isAfter(endTime)) {
-            log.warn(GetStatStr, startTime, endTime);
-            throw new IllegalArgumentException(GetStatStr
+            log.warn("Дата начала {} должна быть ранее даты окончания {}.", startTime, endTime);
+            throw new IllegalArgumentException("Дата начала {} должна быть ранее даты окончания {}."
                     + startTime + endTime);
         }
 
