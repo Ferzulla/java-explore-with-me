@@ -1,7 +1,5 @@
 package ru.practicum.explore.service;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +16,11 @@ import static ru.practicum.explore.model.ModelMapper.toModelHit;
 
 @Service
 @Slf4j
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class StatsServiceImpl implements StatsService {
 
-    final StatsRepository statsRepository;
-    final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    String GetStats = "Дата начала {} должна быть ранее даты окончания {}.";
+    private final StatsRepository statsRepository;
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final String GetStatStr = "Дата начала {} должна быть ранее даты окончания {}.";
 
     @Autowired
     public StatsServiceImpl(StatsRepository statsRepository) {
@@ -43,8 +40,8 @@ public class StatsServiceImpl implements StatsService {
         LocalDateTime startTime = LocalDateTime.parse(start, dateTimeFormatter);
         LocalDateTime endTime = LocalDateTime.parse(end, dateTimeFormatter);
         if (startTime.isAfter(endTime)) {
-            log.warn(GetStats, startTime, endTime);
-            throw new IllegalArgumentException(GetStats
+            log.warn(GetStatStr, startTime, endTime);
+            throw new IllegalArgumentException(GetStatStr
                     + startTime + endTime);
         }
 
