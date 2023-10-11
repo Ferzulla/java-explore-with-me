@@ -38,10 +38,9 @@ public class StatsServiceImpl implements StatsService {
 
         LocalDateTime startTime = LocalDateTime.parse(start, dateTimeFormatter);
         LocalDateTime endTime = LocalDateTime.parse(end, dateTimeFormatter);
-        String Status = "Дата начала {} должна быть ранее даты окончания {}.";
         if (startTime.isAfter(endTime)) {
-            log.warn(Status, startTime, endTime);
-            throw new IllegalArgumentException(Status
+            log.warn("{} ---->>>> {}.", startTime, endTime);
+            throw new IllegalArgumentException("Дата начала {} должна быть ранее даты окончания {}."
                     + startTime + endTime);
         }
 
