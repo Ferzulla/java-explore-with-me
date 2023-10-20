@@ -1,8 +1,10 @@
 package ru.practicum.explore.useDto.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -10,12 +12,11 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class HitDto {
 
-     String app;
-     String uri;
-     String ip;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-     LocalDateTime timestamp;
+    private String app;
+    private String uri;
+    private String ip;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime timestamp;
 }
