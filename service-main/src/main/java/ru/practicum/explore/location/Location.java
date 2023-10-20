@@ -1,9 +1,7 @@
 package ru.practicum.explore.location;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
@@ -13,14 +11,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "locations")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+     Long id;
     @Column(name = "lat", nullable = false)
-    private Float lat;
+     Float lat;
     @Column(name = "lon", nullable = false)
-    private Float lon;
+     Float lon;
 
     public Location(Float lat, Float lon) {
         this.lat = lat;

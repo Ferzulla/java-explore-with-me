@@ -1,6 +1,7 @@
 package ru.practicum.explore.category.dto;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -11,9 +12,10 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CategoryDto {
-    private Long id;
+     Long id;
     @NotBlank
     @Size(max = 50, min = 1)
-    private String name;
+     String name;
 }

@@ -1,9 +1,7 @@
 package ru.practicum.explore.event.search;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,11 +10,12 @@ import java.util.List;
 @Setter
 @ToString
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CriteriaUser {
-    private String text;
-    private List<Long> categories;
-    private Boolean paid;
-    private LocalDateTime rangeStart;
-    private LocalDateTime rangeEnd;
-    private Boolean onlyAvailable;
+     String text;
+     List<Long> categories;
+     Boolean paid;
+     LocalDateTime rangeStart;
+     LocalDateTime rangeEnd;
+     Boolean onlyAvailable;
 }

@@ -1,6 +1,7 @@
 package ru.practicum.explore.event.search;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.explore.enums.EventState;
 
 import java.time.LocalDateTime;
@@ -12,10 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CriteriaAdmin {
-    private List<Long> users;
-    private List<EventState> states;
-    private List<Long> categories;
-    private LocalDateTime rangeStart;
-    private LocalDateTime rangeEnd;
+     List<Long> users;
+     List<EventState> states;
+     List<Long> categories;
+     LocalDateTime rangeStart;
+     LocalDateTime rangeEnd;
 }
