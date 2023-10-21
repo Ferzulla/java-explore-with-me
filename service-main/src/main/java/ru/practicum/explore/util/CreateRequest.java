@@ -8,10 +8,10 @@ import ru.practicum.explore.exceptions.ParameterException;
 public class CreateRequest {
     public static PageRequest createRequest(int from, int size) {
         if (from < 0) {
-            throw new ParameterException("Параметр должен быть больше нуля.");
+            throw new ParameterException(String.format("Параметр from должен быть больше нуля.. from = %s", from));
         }
         if (size <= 0) {
-            throw new ParameterException("Размер параметра должен быть больше или равен нулю.");
+            throw new ParameterException(String.format("Размер параметра size должен быть больше или равен нулю. size = %s", size));
         }
         return PageRequest.of(from / size, size);
     }
