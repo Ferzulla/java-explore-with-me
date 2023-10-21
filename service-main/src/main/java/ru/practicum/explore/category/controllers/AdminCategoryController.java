@@ -22,22 +22,24 @@ public class AdminCategoryController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto addCategory(@Valid @RequestBody CategoryDto categoryDto) {
-        log.info("Получен POST- запрос: /admin/categories (Admin). Добавление новой категории (dto): {}.", categoryDto);
+        log.info(String.format("Получен POST- запрос: /admin/categories (Admin). " +
+                "Добавление новой категории (dto):  %s", categoryDto));
         return categoryService.addCategory(categoryDto);
     }
 
     @PatchMapping("/{catId}")
     public CategoryDto updateCategory(@Valid @RequestBody CategoryDto categoryDto,
                                       @PathVariable Long catId) {
-        log.info("Получен PATCH- запрос: /admin/categories/{catId} (Admin). Категория (id) {} обновлена  (dto): {}",
-                catId, categoryDto);
+
+        log.info(String.format("Получен PATCH- запрос: /admin/categories/{catId} (Admin). " +
+                "Категория (id) {} обновлена  (dto):  %s, %s ", catId, categoryDto));
         return categoryService.updateCategory(categoryDto, catId);
     }
 
     @DeleteMapping("/{catId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCategory(@PathVariable long catId) {
-        log.info("Delete category with id {}", catId);
+        log.info(String.format("Удалить категорию с идентификатором  %s ", catId));
         categoryService.deleteCategory(catId);
     }
 
