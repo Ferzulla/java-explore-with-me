@@ -22,15 +22,14 @@ public class PublicCompilationController {
     @GetMapping
     public List<CompilationWithIdAndPinned> getCompilations(@RequestParam(name = "from", defaultValue = "0") int from,
                                                             @RequestParam(name = "size", defaultValue = "10") int size) {
-        log.info("Получен GET-запрос: /compilations?pinned={pinned}&from={from}&size={size} (Public). " +
-                "Просмотр подборки событий с параметрами:  from: {}, size: {}.", from, size);
+        log.info(String.format("Получен GET-запрос: /compilations?pinned={pinned}&from={from}&size={size} (Public). Просмотр подборки событий с параметрами:  from: %s, size: %s.", from, size));
         return compilationService.getCompilations(from, size);
     }
 
     @GetMapping("/{compId}")
     public CompilationDto getCompilationsById(@PathVariable Long compId) {
-        log.info("Получен GET- запрос: /compilations?pinned={pinned}&from={from}&size={size}] (Public). " +
-                "Просмотр подборки событий (id): {}", compId);
+        log.info(String.format("Получен GET- запрос: /compilations?pinned={pinned}&from={from}&size={size}] (Public). Просмотр подборки событий (id): %s", compId));
         return compilationService.getCompilationsById(compId);
     }
 }
+
