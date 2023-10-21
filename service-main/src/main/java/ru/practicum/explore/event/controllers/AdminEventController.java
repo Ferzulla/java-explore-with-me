@@ -59,15 +59,15 @@ public class AdminEventController {
                 .from(from)
                 .size(size)
                 .build();
-        log.info("Получен GET-запрос: /admin/events, параметры = {}", param);
+        log.info(String.format("Получен GET-запрос: /admin/events, параметры = %s.", param));
         return new ResponseEntity<>(eventService.searchEventsAdmin(param), HttpStatus.OK);
     }
 
     @PatchMapping("/{eventId}")
     public EventDto updateEventByAdmin(@PathVariable Long eventId,
                                        @Valid @RequestBody EventUpdateRequestAdmin eventUpdateRequestAdmin) {
-        log.info("Получен PATCH- запрос: /admin/events/{eventId}] (Admin). Обновление события (id): {} обновлено (dto): {}",
-                eventId, eventUpdateRequestAdmin);
+        log.info(String.format("Получен PATCH- запрос: /admin/events/{eventId}] (Admin). Обновление события (id): %s обновлено (dto): %s", eventId, eventUpdateRequestAdmin));
         return eventService.updateEventByAdmin(eventId, eventUpdateRequestAdmin);
     }
 }
+

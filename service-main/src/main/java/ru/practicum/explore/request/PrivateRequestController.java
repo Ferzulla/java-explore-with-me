@@ -23,23 +23,20 @@ public class PrivateRequestController {
     @ResponseStatus(HttpStatus.CREATED)
     public RequestDto saveRequest(@PathVariable Long userId,
                                   @RequestParam Long eventId) {
-        log.info("Получен POST- запрос: users/{userId}/requests на создание запроса участия пользователя (id) {}" +
-                " в событии: (id) {} ", userId, eventId);
+        log.info(String.format("Получен POST- запрос: users/{userId}/requests на создание запроса участия пользователя (id) %s в событии: (id) %s", userId, eventId));
         return requestService.addRequest(userId, eventId);
     }
 
     @GetMapping
     public List<RequestDto> getAllRequestsParticipationInOtherPeoplesEvents(@PathVariable Long userId) {
-        log.info("Получен GET-запрос users/{userId}/requests на получение информации о заявкх текущего " +
-                "пользователя (id) {} на участие в чужих событиях ", userId);
+        log.info(String.format("Получен GET-запрос users/{userId}/requests на получение информации о заявках текущего пользователя (id) %s на участие в чужих событиях ", userId));
         return requestService.getAllRequestsParticipationInOtherPeoplesEvents(userId);
     }
 
     @PatchMapping("{requestId}/cancel")
     public RequestDto cancelRequest(@PathVariable Long userId,
                                     @PathVariable Long requestId) {
-        log.info("Получен PATCH- запрос users/{userId}/requests/{requestId}/cancel об отмене своего запроса (id) {}" +
-                " на участие в событии от пользователя (id) {} ", requestId, userId);
+        log.info(String.format("Получен PATCH- запрос users/{userId}/requests/{requestId}/cancel об отмене своего запроса (id) %s на участие в событии от пользователя (id) %s ", requestId, userId));
         return requestService.cancelRequest(userId, requestId);
     }
 }

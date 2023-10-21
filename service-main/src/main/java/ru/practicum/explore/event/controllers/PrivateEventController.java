@@ -31,8 +31,7 @@ public class PrivateEventController {
     public EventFullDto addEvent(@PathVariable Long userId,
                                  @Valid @RequestBody EventNewDto eventNewDto) {
         EventFullDto addedEvent = eventService.saveEvent(userId, eventNewDto);
-        log.info("Получен POST- запрос /users/{userId}/events на добавление события {} от пользователя: " +
-                " (id): {}", eventNewDto, userId);
+        log.info(String.format("Получен POST- запрос /users/{userId}/events на добавление события %s от пользователя: (id): %s", eventNewDto, userId));
         return addedEvent;
     }
 
@@ -41,16 +40,13 @@ public class PrivateEventController {
                                                     @RequestParam(name = "from", defaultValue = "0") int from,
                                                     @RequestParam(name = "size", defaultValue = "10") int size) {
         List<EventShortDto> events = eventService.getAllEventsByInitiatorPrivate(userId, from, size);
-        log.info("Получен GET- запрос  /users/{userId}/events?from={from}&size={size}, " +
-                        "Просмотр списка событий от пользователя (id): {} с параметрами пагинации from: {} size: {}",
-                userId, from, size);
+        log.info(String.format("Получен GET- запрос  /users/{userId}/events?from={from}&size={size}, Просмотр списка событий от пользователя (id): %s с параметрами пагинации from: %s size: %s", userId, from, size));
         return events;
     }
 
     @GetMapping("/{eventId}")
     public EventFullDto getEventByIdPrivate(@PathVariable Long userId, @PathVariable Long eventId) {
-        log.info("Получен GET- запрос: /users/{userId}/events/{eventId}. Просмотр события (id): {} " +
-                "от пользователя: (id): {}", eventId, userId);
+        log.info(String.format("Получен GET- запрос: /users/{userId}/events/{eventId}. Просмотр события (id): %s от пользователя: (id): %s", eventId, userId));
         return eventService.getEventByIdPrivate(userId, eventId);
     }
 
@@ -58,16 +54,14 @@ public class PrivateEventController {
     public EventFullDto updateEvent(@PathVariable Long userId,
                                     @PathVariable Long eventId,
                                     @Valid @RequestBody EventUpdateRequestUser eventUpdateRequestUser) {
-        log.info("Получен PATCH- запрос: /users/{userId}/events/{eventsId} на обновление события (id): {}, " +
-                "от пользователя (id):  {}, обновленное событие (dto): {}", eventId, userId, eventUpdateRequestUser);
+        log.info(String.format("Получен PATCH- запрос: /users/{userId}/events/{eventsId} на обновление события (id): %s, от пользователя (id):  %s, обновленное событие (dto): %s", eventId, userId, eventUpdateRequestUser));
         return eventService.updateEventPrivate(userId, eventId, eventUpdateRequestUser);
     }
 
     @GetMapping("/{eventId}/requests")
     public List<RequestDto> getEventRequests(@PathVariable Long userId,
                                              @PathVariable Long eventId) {
-        log.info("Получен GET-запрос: /users/{userId}/events/{eventId}/requests, " +
-                "Просмотр запросов на участие в событии: (id): {}, созданном пользователем: (id): {}", eventId, userId);
+        log.info(String.format("Получен GET-запрос: /users/{userId}/events/{eventId}/requests, Просмотр запросов на участие в событии: (id): %s, созданном пользователем: (id): %s", eventId, userId));
         return eventService.getEventRequests(userId, eventId);
     }
 
@@ -75,8 +69,7 @@ public class PrivateEventController {
     public RequestUpdateResultDto updateStatusRequestsForEvent(@PathVariable Long userId,
                                                                @PathVariable Long eventId,
                                                                @RequestBody RequestUpdateDto requestDto) {
-        log.info("Получен PATCH-запрос /users/{userId}/events/{eventId}/requests. " +
-                "Обновление запроса на событие (id): {}, созданное пользователем (id): {}", eventId, userId);
+        log.info(String.format("Получен PATCH-запрос /users/{userId}/events/{eventId}/requests. Обновление запроса на событие (id): %s, созданное пользователем (id): %s", eventId, userId));
         return eventService.updateStatusRequestsForEvent(userId, eventId, requestDto);
     }
 
