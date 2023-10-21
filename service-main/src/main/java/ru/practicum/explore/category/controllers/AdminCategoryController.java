@@ -22,7 +22,8 @@ public class AdminCategoryController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto addCategory(@Valid @RequestBody CategoryDto categoryDto) {
-        log.info("Получен POST- запрос: /admin/categories (Admin). Добавление новой категории (dto): {}.", categoryDto);
+       // log.info("Получен POST- запрос: /admin/categories (Admin). Добавление новой категории (dto): {}.", categoryDto);
+       log.info(String.format("Получен POST- запрос: /admin/categories (Admin). Добавление новой категории (dto): %s.", categoryDto));
         return categoryService.addCategory(categoryDto);
     }
 
