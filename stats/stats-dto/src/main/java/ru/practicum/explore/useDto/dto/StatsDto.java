@@ -1,16 +1,15 @@
 package ru.practicum.explore.useDto.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class StatsDto {
-    private String app;
-    private String uri;
-    private Long hits;
+     String app;
+     String uri;
+     Long hits;
 }

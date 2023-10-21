@@ -1,6 +1,7 @@
 package ru.practicum.explore.user;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
@@ -11,12 +12,13 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "users")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+     Long id;
     @Column(name = "name", nullable = false)
-    private String name;
+     String name;
     @Column(name = "email", nullable = false, unique = true)
-    private String email;
+     String email;
 }

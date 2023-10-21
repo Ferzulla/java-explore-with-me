@@ -1,9 +1,7 @@
 package ru.practicum.explore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
 
@@ -12,11 +10,12 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ModelStats {
     @Column(name = "app", nullable = false)
-    private String app;
+     String app;
     @Column(name = "uri", nullable = false)
-    private String uri;
+     String uri;
     @Column(name = "countIp", nullable = false)
-    private Long hits;
+     Long hits;
 }

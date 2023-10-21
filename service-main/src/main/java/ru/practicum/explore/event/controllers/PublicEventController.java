@@ -62,8 +62,8 @@ public class PublicEventController {
 
         if (start != null && end != null) {
             if (start.isAfter(end)) {
-                log.info("Start date {} is after end date {}.", start, end);
-                throw new ParameterException(String.format("Start date %s is after end date %s.", start, end));
+                log.info("Дата начала {} находится после даты окончания {}.", start, end);
+                throw new ParameterException(String.format("Начальная дата %s находится после даты окончания %s.", start, end));
             }
         }
 

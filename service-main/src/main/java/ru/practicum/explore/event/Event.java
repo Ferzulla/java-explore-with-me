@@ -1,6 +1,7 @@
 package ru.practicum.explore.event;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
 import ru.practicum.explore.category.Category;
 import ru.practicum.explore.enums.EventState;
@@ -22,67 +23,68 @@ import java.util.Objects;
 @Entity
 @Builder
 @Table(name = "events")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+     Long id;
     @Length(min = 3, max = 120)
     @Column(name = "title", nullable = false)
-    private String title;
+     String title;
     @NotBlank
     @NotNull
     @Length(min = 20, max = 7000)
     @Column(name = "description", nullable = false)
-    private String description;
+     String description;
     @NotBlank
     @NotNull
     @Length(min = 20, max = 2000)
     @Column(name = "annotation", nullable = false)
-    private String annotation;
+     String annotation;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+     Category category;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "initiator_id", nullable = false)
-    private User initiator;
+     User initiator;
 
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
+     Location location;
 
     @Column(name = "event_date")
-    private LocalDateTime eventDate;
+     LocalDateTime eventDate;
 
     @Column(name = "created_on")
-    private LocalDateTime createdOn;
+     LocalDateTime createdOn;
 
     @Column(name = "published_on")
-    private LocalDateTime publishedOn;
+     LocalDateTime publishedOn;
 
     @Column(name = "participant_limit")
-    private Long participantLimit;
+     Long participantLimit;
 
     @OneToMany
     @JoinColumn(name = "event_id")
-    private List<Request> allRequests;
+     List<Request> allRequests;
 
     @Column(name = "request_moderation")
-    private Boolean requestModeration;
+     Boolean requestModeration;
 
 
     @Column(name = "paid")
-    private Boolean paid;
+     Boolean paid;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
-    private EventState state;
+     EventState state;
 
     @Column(name = "views")
-    private Long views;
+     Long views;
 
     @Override
     public boolean equals(Object o) {
