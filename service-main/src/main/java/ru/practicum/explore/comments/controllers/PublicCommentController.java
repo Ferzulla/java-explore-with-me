@@ -24,8 +24,7 @@ public class PublicCommentController {
                                                      int from,
                                                      @RequestParam(required = false, defaultValue = "10")
                                                      int size) {
-        log.info("Получен GET-запрос /events/{eventId}/comments (Public). " +
-                "Просмотр опубликованных комментариев (dto) к событию (id): {}, from: {} to: {}", eventId, from, size);
+        log.info(String.format("Получен GET-запрос /events/{eventId}/comments (Public).Просмотр опубликованных комментариев (dto) к событию (id): %s, from: %s to: %s",  eventId, from, size));
         return commentService.getCommentsForEvent(eventId, size, from);
     }
 }

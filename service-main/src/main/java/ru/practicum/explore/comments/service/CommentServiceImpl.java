@@ -88,7 +88,7 @@ public class CommentServiceImpl implements CommentService {
             commentRepository.deleteById(commentId);
             log.info("Комментарий {} удалён", commentId);
         } else {
-            throw new ParameterException("Только автор или инициатор события может удалить комментарий");
+            throw new ParameterException(String.format("Только автор %s или инициатор %s события может удалить комментарий", userId, eventId));
         }
     }
 
@@ -107,9 +107,8 @@ public class CommentServiceImpl implements CommentService {
 
         Comment commentById = commentRepository.findByIdForEvent(EventState.PUBLISHED.toString(),
                         eventId, commentId)
-                .orElseThrow(() -> new NotFoundException(String.format("Comment with id=%s was not found", commentId)));
-
-        log.info("Комментарий (id): {} от пользователя (id): {} к событию (id): {} :", commentId, userId, eventId);
+                .orElseThrow(() -> new NotFoundException(String.format("Комментарий с id = %s не найден", commentId)));
+        log.info(String.format("Комментарий (id): %s от пользователя (id): %s к событию (id): %s :", commentId, userId, eventId));
         return CommentMapper.toCommentShortDto(commentById);
     }
 
@@ -121,7 +120,7 @@ public class CommentServiceImpl implements CommentService {
         PageRequest pageRequest = CreateRequest.createRequest(from, size);
         List<Comment> pageAllComments = commentRepository.findAllByStateAndEventId(EventState.PUBLISHED.toString(),
                 eventId, pageRequest);
-        log.info("Список комментариев к событию (id): {}", eventId);
+        log.info(String.format("Список комментариев к событию (id): %s", eventId));
         return CommentMapper.listToCommentShortDto(pageAllComments);
     }
 
@@ -134,34 +133,34 @@ public class CommentServiceImpl implements CommentService {
         PageRequest pageRequest = CreateRequest.createRequest(from, size);
         List<Comment> pageAllCommentsForEvent = commentRepository.findAllByStateAndEventId(
                 EventState.PUBLISHED.toString(), eventId, pageRequest);
-        log.info("Список комментариев к событию (id): {} от пользователя (id) {}: ", eventId, userId);
+        log.info(String.format("Список комментариев к событию (id): %s от пользователя (id) %s: ", eventId, userId));
         return CommentMapper.listToCommentShortDto(pageAllCommentsForEvent);
     }
 
     private User getUser(Long userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException("Пользователь не найден id: " + userId));
+                .orElseThrow(() -> new NotFoundException(String.format("Пользователь не найден id: %s" , userId)));
     }
 
     private Comment getComment(Long commentId) {
         return commentRepository.findById(commentId)
-                .orElseThrow(() -> new NotFoundException("Комментарий не найден id:" + commentId));
+        .orElseThrow(() -> new NotFoundException(String.format("Комментарий не найден id: %s" , commentId)));
     }
 
     private Event getEvent(Long eventId) {
         return eventRepository.findById(eventId)
-                .orElseThrow(() -> new NotFoundException("Событие не найдено id:" + eventId));
+        .orElseThrow(() -> new NotFoundException(String.format("Событие не найдено id: %s" , eventId)));
     }
 
     private void checkEvent(Long eventId) {
         if (!eventRepository.existsById(eventId)) {
-            throw new NotFoundException("Событие не найдено id" + eventId);
+            throw new NotFoundException(String.format("Событие не найдено id: %s", eventId));
         }
     }
 
     private void checkExistUserById(Long userId) {
         if (!userRepository.existsById(userId)) {
-            throw new NotFoundException("Пользователь не найден id: " + userId);
+            throw new NotFoundException(String.format("Пользователь не найден id: %s", userId));
         }
     }
 

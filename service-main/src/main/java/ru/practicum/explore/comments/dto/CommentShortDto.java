@@ -2,6 +2,7 @@ package ru.practicum.explore.comments.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
@@ -10,10 +11,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CommentShortDto {
-    private Long id;
-    private String text;
-    private String authorName;
+     Long id;
+     String text;
+     String authorName;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime created;
+     LocalDateTime created;
 }
