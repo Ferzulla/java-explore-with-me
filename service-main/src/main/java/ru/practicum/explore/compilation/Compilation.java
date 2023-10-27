@@ -1,6 +1,7 @@
 package ru.practicum.explore.compilation;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.explore.event.Event;
 
 import javax.persistence.*;
@@ -13,17 +14,18 @@ import java.util.List;
 @Entity
 @Builder
 @Table(name = "compilations")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Compilation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+     Long id;
     @Column(name = "title", nullable = false)
-    private String title;
+     String title;
     @Column(name = "pinned")
-    private Boolean pinned;
+     Boolean pinned;
     @ManyToMany
     @JoinTable(name = "events_compilations",
             joinColumns = @JoinColumn(name = "compilation_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id"))
-    private List<Event> events;
+     List<Event> events;
 }

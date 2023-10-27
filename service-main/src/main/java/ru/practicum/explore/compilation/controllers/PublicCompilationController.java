@@ -32,4 +32,3 @@ public class PublicCompilationController {
         return compilationService.getCompilationsById(compId);
     }
 }
-

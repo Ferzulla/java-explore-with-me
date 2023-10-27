@@ -49,9 +49,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public void deleteCategory(Long catId) {
         Category category = categoryRepository.findById(catId).orElseThrow(() ->
-                new NotFoundException("Категория с идентификатором {} не существует " + catId));
+                new NotFoundException("Сategory with id {} doesn't exist " + catId));
         if (eventRepository.existsByCategory(category)) {
-            throw new ConflictException("Категория не пуста");
+            throw new ConflictException("Category isn't empty");
         }
         categoryRepository.deleteById(catId);
     }

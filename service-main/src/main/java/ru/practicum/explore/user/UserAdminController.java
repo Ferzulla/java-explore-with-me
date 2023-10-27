@@ -22,7 +22,6 @@ public class UserAdminController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto saveUser(@RequestBody @Validated UserDto userDto) {
-        log.info("Получен POST- запрос admin/users на добавление нового пользователя: {} ", userDto);
         log.info(String.format("Получен POST- запрос admin/users на добавление нового пользователя: %s", userDto));
         return userService.addUser(userDto);
     }

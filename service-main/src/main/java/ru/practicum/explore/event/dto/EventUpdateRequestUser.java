@@ -1,6 +1,7 @@
 package ru.practicum.explore.event.dto;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.explore.enums.StateActionUser;
 
 @Getter
@@ -9,6 +10,7 @@ import ru.practicum.explore.enums.StateActionUser;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class EventUpdateRequestUser extends EventUpdateDto {
-    private StateActionUser stateAction;
+     StateActionUser stateAction;
 }

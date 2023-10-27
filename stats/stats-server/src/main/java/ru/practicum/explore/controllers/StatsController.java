@@ -28,7 +28,6 @@ public class StatsController {
     @ResponseStatus(code = HttpStatus.CREATED)
     public HitDto addHit(@RequestBody HitDto hitDto) {
         log.info(String.format("[POST /hit]. Создан запрос по (app: %s, client ip: %s, endpoint path: {}, time: %s", hitDto.getApp(), hitDto.getIp(), hitDto.getUri(), hitDto.getTimestamp()));
-
         return toHitDto(statsService.saveHit(hitDto));
 
     }
@@ -40,7 +39,6 @@ public class StatsController {
                                    @RequestParam(required = false, defaultValue = "false") Boolean unique) {
 
         log.info(String.format("[GET /stats?start={start}&end={end}&uris={uris}&unique={unique}].Запрошена статистика за период с даты: %s по дату: %s по uris: %s (unique: %s)",  start, end, uris, unique));
-
 
         return statsService.getStats(start, end, uris, unique);
     }
