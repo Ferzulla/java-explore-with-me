@@ -139,17 +139,17 @@ public class CommentServiceImpl implements CommentService {
 
     private User getUser(Long userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException(String.format("Пользователь не найден id: %s" , userId)));
+                .orElseThrow(() -> new NotFoundException(String.format("Пользователь не найден id: %s", userId)));
     }
 
     private Comment getComment(Long commentId) {
         return commentRepository.findById(commentId)
-        .orElseThrow(() -> new NotFoundException(String.format("Комментарий не найден id: %s" , commentId)));
+        .orElseThrow(() -> new NotFoundException(String.format("Комментарий не найден id: %s", commentId)));
     }
 
     private Event getEvent(Long eventId) {
         return eventRepository.findById(eventId)
-        .orElseThrow(() -> new NotFoundException(String.format("Событие не найдено id: %s" , eventId)));
+        .orElseThrow(() -> new NotFoundException(String.format("Событие не найдено id: %s", eventId)));
     }
 
     private void checkEvent(Long eventId) {
