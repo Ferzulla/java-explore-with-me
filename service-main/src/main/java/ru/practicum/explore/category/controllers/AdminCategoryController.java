@@ -22,7 +22,7 @@ public class AdminCategoryController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto addCategory(@Valid @RequestBody CategoryDto categoryDto) {
-       log.info(String.format("Получен POST- запрос: /admin/categories (Admin). Добавление новой категории (dto): %s.", categoryDto));
+        log.info(String.format("Получен POST- запрос: /admin/categories (Admin). Добавление новой категории (dto): %s.", categoryDto));
         return categoryService.addCategory(categoryDto);
     }
 
@@ -36,7 +36,6 @@ public class AdminCategoryController {
     @DeleteMapping("/{catId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCategory(@PathVariable long catId) {
-        log.info("Delete category with id {}", catId);
         log.info(String.format("Удалить категорию с идентификатором {}: %s.", catId));
         categoryService.deleteCategory(catId);
     }

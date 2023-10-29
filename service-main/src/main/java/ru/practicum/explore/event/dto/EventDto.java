@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.practicum.explore.category.dto.CategoryDto;
+import ru.practicum.explore.comments.dto.CommentDto;
 import ru.practicum.explore.enums.EventState;
 import ru.practicum.explore.location.LocationDto;
 import ru.practicum.explore.user.dto.UserDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,5 +38,5 @@ public class EventDto {
      EventState state;
      String title;
      Long views;
-
+     List<CommentDto> comments;
 }

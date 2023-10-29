@@ -70,4 +70,3 @@ public class AdminEventController {
         return eventService.updateEventByAdmin(eventId, eventUpdateRequestAdmin);
     }
 }
-

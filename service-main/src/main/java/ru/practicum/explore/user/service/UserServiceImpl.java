@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     public UserDto addUser(UserDto userDto) {
         User user = UserMapper.toUser(userDto);
         User saveUser = userRepository.save(user);
-        log.info(String.format("Добавлен пользователь %s ", userDto));
+        log.info("Добавлен пользователь {} ", userDto);
         return UserMapper.toUserDto(saveUser);
     }
 
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteUser(Long userId) {
-        log.info(String.format("Удалён пользователь (id): %s", userId));
+        log.info("Удалён пользователь (id): {}", userId);
         userRepository.deleteById(userId);
     }
 }

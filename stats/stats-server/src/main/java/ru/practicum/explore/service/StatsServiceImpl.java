@@ -68,7 +68,7 @@ public class StatsServiceImpl implements StatsService {
     private List<StatsDto> getUniqueHits(LocalDateTime start, LocalDateTime end, List<String> uris) {
         List<StatsDto> hits;
         if (uris == null) {
-            log.info("Uris is null");
+            log.info("Uris  равен нулю");
             hits = statsRepository.findAllUniqueIp(start, end);
             ;
         } else {
@@ -81,7 +81,7 @@ public class StatsServiceImpl implements StatsService {
     private List<StatsDto> getAllHits(LocalDateTime start, LocalDateTime end, List<String> uris) {
         List<StatsDto> hits;
         if (uris == null) {
-            log.info("Uris is null");
+            log.info("Uris равен нулю");
             hits = statsRepository.findAll(start, end);
         } else {
             log.info("Uris: {}", uris);
